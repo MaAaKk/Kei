@@ -33,7 +33,7 @@
             position: fixed;
             inset: 0;
             z-index: 999;
-            background: rgba(15, 7, 18, 0.92);
+            background: rgba(15, 7, 18, 0.94);
             backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
@@ -41,6 +41,7 @@
             justify-content: center;
             padding: 20px;
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
+            cursor: pointer;
         }
 
         .intro-overlay.hidden {
@@ -52,8 +53,8 @@
         /* Polaroid Photo Card */
         .photo-card {
             background: #ffffff;
-            padding: 16px 16px 24px 16px;
-            border-radius: 18px;
+            padding: 16px 16px 20px 16px;
+            border-radius: 50px;
             box-shadow: 0 20px 50px rgba(255, 105, 180, 0.35), 0 0 30px rgba(255, 182, 193, 0.4);
             border: 3px solid #ffc6ff;
             display: flex;
@@ -61,9 +62,16 @@
             align-items: center;
             max-width: 320px;
             width: 100%;
-            transform: rotate(-2deg) scale(0.95);
+            transform: rotate(-2deg) scale(0.98);
             animation: floatPhoto 4s ease-in-out infinite alternate;
             position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: rotate(0deg) scale(1.03);
+            box-shadow: 0 25px 60px rgba(255, 105, 180, 0.5), 0 0 40px rgba(255, 182, 193, 0.6);
         }
 
         @keyframes floatPhoto {
@@ -89,7 +97,7 @@
         }
 
         .photo-caption {
-            margin-top: 15px;
+            margin-top: 14px;
             font-family: 'Dancing Script', cursive;
             font-size: 2.2rem;
             color: #ff4d6d;
@@ -98,40 +106,15 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        .intro-btn {
-            margin-top: 30px;
-            background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 50%, #c9184a 100%);
-            color: #fff;
-            border: none;
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-size: 1.25rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.5), 0 0 15px rgba(255, 182, 193, 0.6);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: 0.5px;
-            animation: pulseBtn 1.8s infinite;
+        @keyframes pulseText {
+            0% { transform: scale(0.96); opacity: 0.8; }
+            100% { transform: scale(1.04); opacity: 1; }
         }
 
-        @keyframes pulseBtn {
-            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 77, 109, 0.5); }
-            50% { transform: scale(1.06); box-shadow: 0 12px 35px rgba(255, 77, 109, 0.8); }
-            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 77, 109, 0.5); }
-        }
-
-        .intro-btn:hover {
-            transform: scale(1.1) translateY(-3px);
-            background: linear-gradient(135deg, #ff85a1 0%, #ff5277 50%, #d90429 100%);
-        }
-
-        /* Floating Music Toggle Control */
+        /* Floating Music Control Button */
         .music-control-btn {
             position: fixed;
-            top: 20px;
+            bottom: 10px;
             right: 20px;
             z-index: 100;
             background: rgba(255, 105, 180, 0.25);
@@ -397,27 +380,6 @@
             gap: 15px;
             z-index: 8;
         }
-
-        .top-strawberry {
-            width: 32px;
-            height: 38px;
-            background: #c9184a;
-            border-radius: 50% 50% 80% 80%;
-            position: relative;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-        }
-
-        .top-strawberry::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 6px;
-            width: 20px;
-            height: 10px;
-            background: #52b788;
-            border-radius: 50% 50% 0 0;
-        }
-
         .cake-name {
             position: absolute;
             width: 100%;
@@ -643,30 +605,31 @@
 
         .letter {
             position: absolute;
-            bottom: 8px;
-            left: 12px;
-            width: 256px;
-            height: 160px;
-            background: #fffdfa;
-            border-radius: 10px;
-            padding: 16px;
-            box-sizing: border-box;
-            color: #4a1525;
-            font-family: 'Dancing Script', cursive;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), z-index 0.8s ease, height 0.8s ease;
-            z-index: 2;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-            border: 2px solid #ffe6ed;
-            text-align: center;
+        bottom: 10px;
+        left: 15px;
+        width: 270px;
+        height: 160px; /* or adjust depending on your envelope height */
+        background: #fff8f0;
+        border-radius: 8px;
+        padding: 12px 15px;
+        box-sizing: border-radius;
+        color: #2b2d42;
+        font-family: 'Dancing Script', cursive;
+        text-shadow: none;
+        text-transform: none;
+        transition: transform 0.8s ease, z-index 0.8s ease, height 0.8s ease;
+        z-index: 1;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        
+        /* FIX: Enable smooth scrolling and prevent overflow issues */
+        overflow-y: auto;
+        scrollbar-width: thin; /* Firefox */
         }
 
         .letter h3 {
-            margin: 0 0 10px 0;
-            color: #ff0266;
-            font-size: 1.5rem;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+        margin: 0 0 6px 0;
+        color: #d90429;
+        font-size: 1.2em;
         }
 
         .letter p {
@@ -677,6 +640,13 @@
             font-family: 'Quicksand', sans-serif;
             font-weight: 500;
         }
+
+        .envelope.open .letter,
+        .envelope-wrapper.open .letter {
+            transform: translateY(-140px);
+            height: 240px; /* Gives more vertical room when fully opened */
+            z-index: 10;
+            }
 
         .open .flap {
             transform: rotateX(180deg);
@@ -719,16 +689,13 @@
     </style>
 </head>
 <body>
-    <div class="intro-overlay" id="introOverlay">
+    <div class="intro-overlay" id="introOverlay" onclick="startCelebration()">
         <div class="photo-card">
             <div class="photo-frame">
-                <img src="C:\Users\Admin\Downloads\KEIBDAY\IMG_0671.jpg" alt="Kersha" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'">
+                <img src="C:/Users/Admin/Downloads/KEIBDAY/IMG_0671.jpg" alt="Kersha" onerror="this.src='IMG_0671.jpg'">
             </div>
             <div class="photo-caption">Birthday Girl ✨</div>
         </div>
-        <button class="intro-btn" onclick="startCelebration()">
-            <span>✨ Click to Celebrate Kersha's Birthday ✨</span>
-        </button>
     </div>
 
     <button class="music-control-btn" id="musicBtn" onclick="toggleMusic()">
@@ -756,10 +723,6 @@
 
         <div class="content-layout">
             <div class="cake-container" id="cake">
-                <div class="strawberries-top-group">
-                    <div class="top-strawberry"></div>
-                    <div class="top-strawberry"></div>
-                </div>
 
                 <div class="candles-group">
                     <div class="candle"><div class="fire"></div></div>
@@ -796,12 +759,13 @@
             <div class="envelope-section">
                 <div class="click-hint-container">
                     <div class="click-hint" id="clickHint" onclick="handleEnvelopeClick(event)">
-                        Click me! 3 clicks left ✨
+                        Keep shining as brightly as you always do ✨
                     </div>
                     <div class="heart-counter-badges">
                         <span class="heart-badge" id="hb1">💖</span>
                         <span class="heart-badge" id="hb2">💖</span>
                         <span class="heart-badge" id="hb3">💖</span>
+                        <span class="heart-badge" id="hb4"></span>
                     </div>
                 </div>
                 
@@ -813,8 +777,9 @@
                         <div class="heart-seal"></div>
                         
                         <div class="letter">
-                            <h3>Dearest Kersha,</h3>
-                            <p>Wishing you the happiest 19th birthday! May your day be filled with endless joy, sweetness, and happy memories. Keep shining brightly! ✨</p>
+                            <h3>Dearest KEI,</h3>
+                            <p>Wishing you a blessed 19th birthday KEIKEI! I know how tired and sleepless you get with school and extracurriculars, but I hope this brings comfort to your heart. I thank God every day for every sweet moment with you✨. May He keep showering you with His love. I may not always be physically beside you, 
+                                but my heart, love, and support are always right there. Look oh, I have strawberry cake for you HAHAHA pangmatagalan yan boii, basta may internet ka lang, hindi po yan mawawala~ ✨</p>
                         </div>
                     </div>
                 </div>
@@ -864,7 +829,10 @@
         }
 
         function startCelebration() {
-            document.getElementById('introOverlay').classList.add('hidden');
+            const overlay = document.getElementById('introOverlay');
+            if (overlay.classList.contains('hidden')) return;
+            
+            overlay.classList.add('hidden');
             
             if (player && typeof player.playVideo === 'function') {
                 player.playVideo();
@@ -872,8 +840,8 @@
 
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 100,
-                    spread: 70,
+                    particleCount: 120,
+                    spread: 80,
                     origin: { y: 0.6 }
                 });
             }
@@ -897,14 +865,14 @@
                 btnText.innerText = "Music: ON 🎵";
             } else {
                 btn.classList.remove('playing');
-                btnText.innerText = "Music: OFF";
+                btnText.innerText = "OH BAKIT PINATAY?";
             }
         }
 
         function startFloatingNotes() {
             if (noteInterval) return;
             noteInterval = setInterval(() => {
-                const noteSymbols = ['🎵', '🎶', '🎼', '💖', '✨'];
+                const noteSymbols = ['🎉', '🎁', '🍓', '🎂', '✨'];
                 const note = document.createElement('div');
                 note.className = 'floating-note';
                 note.innerText = noteSymbols[Math.floor(Math.random() * noteSymbols.length)];
@@ -922,11 +890,13 @@
         }
 
         function handleEnvelopeClick(e) {
+            e.stopPropagation();
+
             if (!isMusicPlaying && player && typeof player.playVideo === 'function') {
                 player.playVideo();
             }
 
-            if (clickCount >= 3) return;
+            if (clickCount >= 4) return;
 
             clickCount++;
             const wrapper = document.getElementById('envelopeWrapper');
@@ -938,12 +908,14 @@
             wrapper.className = `envelope-wrapper state-${clickCount}`;
 
             if (clickCount === 1) {
-                hint.innerText = "Click again! 2 clicks left 💖";
+                hint.innerText = "Every sweet moment with you is my favorite 💖";
             } else if (clickCount === 2) {
-                hint.innerText = "Almost there! 1 more click 💌";
+                hint.innerText = "and I can't wait for a lifetime more. 💌";
             } else if (clickCount === 3) {
-                envelope.classList.add('open');
                 hint.innerText = "For Kersha with Love 💕";
+            } else if (clickCount === 4) {
+                envelope.classList.add('open');
+                hint.innerText = "Mwuah!";
                 hint.style.animation = "none";
 
                 if (typeof confetti === 'function') {
@@ -974,6 +946,16 @@
                 setTimeout(() => sparkle.remove(), 1000);
             }
         }
+
+          document.addEventListener('contextmenu', function(event) {
+    // Prevent the default right-click menu from popping up
+    event.preventDefault();
+    
+    // Show the "nuh-uh" message
+    alert("nuh-uh");
+        });
+
     </script>
 </body>
 </html>
+
